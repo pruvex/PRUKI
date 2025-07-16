@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - core-app-1.2
+  pull_request:
+    branches:
+      - core-app-1.2
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies (Test-App)
+        run: |
+          cd Test-App
+          npm ci
+
+      - name: Install Playwright Browsers
+        run: |
+          cd Test-App
+          npx playwright install --with-deps
+
+      - name: Run Unit Tests
+        run: |
+          cd Test-App
+          npx jest --config jest.config.cjs --coverage
+
+      - name: Run Playwright E2E Tests
+        run: |
+          cd Test-App
+          npm run test
+
+      - name: Update test-notes.md (Auto)
+        run: |
+          echo "$(date) - CI/CD erfolgreich: Alle Tests bestanden." >> ../modules-meta/core.app-shell/test-notes.md
+        if: success()
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: Test-App/coverage

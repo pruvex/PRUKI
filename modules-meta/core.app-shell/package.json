@@ -5,13 +5,33 @@
   "main": "dist-main/index.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run build:main && npm run build:preload && vite --host 0.0.0.0 --port 5174 --strictPort\" \"wait-on http://localhost:5174 && electron .\""
-
+    "dev": "concurrently \"npm run build:main && npm run build:preload && vite --host 0.0.0.0 --port 5174 --strictPort\" \"wait-on http://localhost:5174 && electron .\"",
     "build": "vite build",
     "start": "electron .",
     "build:main": "tsc --project tsconfig.main.json",
     "build:preload": "tsc --project tsconfig.preload.json",
     "test:e2e": "call kill-port.bat && cd ../../Test-App && npm run test"
+  },
+  "build": {
+    "appId": "com.pruki.appshell",
+    "productName": "PrukiAppShell",
+    "files": [
+      "dist-main/**",
+      "dist/**",
+      "public/**"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   },
   "keywords": [],
   "author": "",
@@ -20,6 +40,10 @@
     "@playwright/test": "^1.54.1",
     "electron": "^37.2.2",
     "electron-is-dev": "^3.0.1",
+    "electron-log": "^5.4.1",
+    "electron-window-state": "^5.0.3"
+  },
+  "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

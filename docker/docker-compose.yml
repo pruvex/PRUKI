@@ -13,13 +13,29 @@ services:
 
   core-app-shell:
     build:
-      context: ..
-      dockerfile: modules-meta/core.app-shell/Dockerfile
+      context: modules-meta/core.app-shell
+      dockerfile: Dockerfile
     working_dir: /app/modules-meta/core.app-shell
     volumes:
-      - ../modules-meta/core.app-shell:/app/modules-meta/core.app-shell:delegated
+      - ./modules-meta/core.app-shell:/app/modules-meta/core.app-shell:delegated
+      - ./Test-App:/app/Test-App:delegated # Mount Test-App for tests
     command: ["npm", "run", "dev"]
     environment:
       - CI=true
     ports:
       - "5174:5174"
+
+  core-app-shell-tests:
+    build:
+      context: modules-meta/core.app-shell
+      dockerfile: Dockerfile
+    working_dir: /app/Test-App
+    volumes:
+      - ./modules-meta/core.app-shell:/app/modules-meta/core.app-shell:delegated
+      - ./Test-App:/app/Test-App:delegated
+    command: ["npm", "run", "test"]
+    environment:
+      - CI=true
+      - PLAYWRIGHT_TEST_BASE_URL=http://core-app-shell:5174 # Point tests to the dev server
+    depends_on:
+      - core-app-shell

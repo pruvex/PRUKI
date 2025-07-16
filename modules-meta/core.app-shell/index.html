@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>Pruki App Shell</title>
+    <!--
+  Content Security Policy (CSP) für Electron-Renderer:
+  - Keine externen Skripte oder Styles erlaubt
+  - Keine 'unsafe-inline' mehr in Produktion
+  - Nur lokale Ressourcen und Dev-Server für Entwicklung
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' ws://localhost:5174 http://localhost:5174;">
+
   </head>
   <body>
     <div id="root"></div>

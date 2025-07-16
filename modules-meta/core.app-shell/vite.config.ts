@@ -9,6 +9,9 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+    },
   },
   server: {
     port: 5174,
