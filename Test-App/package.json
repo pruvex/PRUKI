@@ -1,0 +1,20 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "description": "Die Test-App ist ein Playwright-basiertes Beispielprojekt im Pruki-Framework. Sie dient als Vorlage für modulare, KI-gestützte Entwicklung und automatisiertes Testing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "build": "tsc",
+    "self-check": "ts-node app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
