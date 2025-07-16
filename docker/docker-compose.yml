@@ -11,15 +11,15 @@ services:
     environment:
       - CI=true
 
-  # Beispiel für ein weiteres Modul (z. B. core.app-shell)
-  # Einfach neuen Service nach diesem Muster ergänzen
-  # core-app-shell:
-  #   build:
-  #     context: ..
-  #     dockerfile: docker/Dockerfile
-  #   working_dir: /app/modules-meta/core.app-shell
-  #   volumes:
-  #     - ../modules-meta/core.app-shell:/app/modules-meta/core.app-shell:delegated
-  #   command: ["npx", "playwright", "test"]
-  #   environment:
-  #     - CI=true
+  core-app-shell:
+    build:
+      context: ..
+      dockerfile: modules-meta/core.app-shell/Dockerfile
+    working_dir: /app/modules-meta/core.app-shell
+    volumes:
+      - ../modules-meta/core.app-shell:/app/modules-meta/core.app-shell:delegated
+    command: ["npm", "run", "dev"]
+    environment:
+      - CI=true
+    ports:
+      - "5174:5174"
