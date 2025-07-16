@@ -10,7 +10,7 @@ Technologien:
 
 Node.js (ESM, "type": "module")
 TypeScript
-Docker (für reproduzierbare Dev- und Testumgebungen)
+Docker (für reproduzierbare Dev- und Testumgebungen, zentraler Multi-Modul-Workflow)
 Playwright (End-to-End-Testing)
 KI-gestützter Entwicklungsworkflow (ChatGPT, Gemini CLI, Google AI Studio, Cascade)
 Initiales Setup
@@ -64,8 +64,29 @@ Das eigentliche Modul
 Den zugehörigen Playwright-Test
 Docker-Integration
 Entwicklung und Tests laufen standardmäßig in Docker-Containern.
-Nutze docker-compose up für reproduzierbare Dev- und Testumgebungen.
+Nutze docker compose up für reproduzierbare Dev- und Testumgebungen.
 Beispiel docker-compose.yml und Dockerfile sind im docker-Verzeichnis.
+
+### Zentrale Docker- und Compose-Strategie für alle Module
+- Es gibt **ein gemeinsames Dockerfile** und **ein zentrales docker-compose.yml** für das ganze Projekt.
+- Jedes Modul kann als eigener Service im Compose-File eingetragen werden (siehe Kommentar im Compose-File).
+- Beispiel für einen neuen Service (z. B. core.app-shell):
+
+  ```yaml
+  core-app-shell:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    working_dir: /app/modules-meta/core.app-shell
+    volumes:
+      - ../modules-meta/core.app-shell:/app/modules-meta/core.app-shell:delegated
+    command: ["npx", "playwright", "test"]
+    environment:
+      - CI=true
+  ```
+- Mit `docker compose up --build` werden alle Module/Services getestet.
+- Keine Einzeldockerfiles pro Modul nötig – alles läuft über die zentrale Infrastruktur.
+
 ESM-Konfiguration
 In der package.json steht:
 json

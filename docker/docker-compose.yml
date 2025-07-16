@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  test-app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    working_dir: /app/Test-App
+    volumes:
+      - ../Test-App:/app/Test-App:delegated
+    command: ["npx", "playwright", "test"]
+    environment:
+      - CI=true
+
+  # Beispiel für ein weiteres Modul (z. B. core.app-shell)
+  # Einfach neuen Service nach diesem Muster ergänzen
+  # core-app-shell:
+  #   build:
+  #     context: ..
+  #     dockerfile: docker/Dockerfile
+  #   working_dir: /app/modules-meta/core.app-shell
+  #   volumes:
+  #     - ../modules-meta/core.app-shell:/app/modules-meta/core.app-shell:delegated
+  #   command: ["npx", "playwright", "test"]
+  #   environment:
+  #     - CI=true
