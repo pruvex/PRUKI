@@ -1,0 +1,80 @@
+{
+  "config": {
+    "configFile": "C:\\KI\\Pruki\\modules-meta\\core.app-shell\\playwright.config.ts",
+    "rootDir": "C:/KI/Pruki/Test-App/Tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/KI/Pruki/modules-meta/core.app-shell/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "",
+        "name": "",
+        "testDir": "C:/KI/Pruki/Test-App/Tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.1",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: Cannot find module 'playwright'\nRequire stack:\n- C:\\KI\\Pruki\\Test-App\\Tests\\app.spec.ts\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\playwright\\lib\\transform\\transform.js\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\playwright\\lib\\common\\configLoader.js\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\playwright\\lib\\program.js\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\@playwright\\test\\cli.js",
+      "stack": "Error: Cannot find module 'playwright'\nRequire stack:\n- C:\\KI\\Pruki\\Test-App\\Tests\\app.spec.ts\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\playwright\\lib\\transform\\transform.js\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\playwright\\lib\\common\\configLoader.js\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\playwright\\lib\\program.js\n- C:\\KI\\Pruki\\modules-meta\\core.app-shell\\node_modules\\@playwright\\test\\cli.js\n    at Object.<anonymous> (C:\\KI\\Pruki\\Test-App\\Tests\\app.spec.ts:1:1)",
+      "location": {
+        "file": "C:\\KI\\Pruki\\Test-App\\Tests\\app.spec.ts",
+        "column": 1,
+        "line": 1
+      },
+      "snippet": "\u001b[90m   at \u001b[39mapp.spec.ts:1\n\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1 |\u001b[39m \u001b[36mimport\u001b[39m { _electron \u001b[36mas\u001b[39m electron } \u001b[36mfrom\u001b[39m \u001b[32m'playwright'\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 2 |\u001b[39m \u001b[36mimport\u001b[39m { test\u001b[33m,\u001b[39m expect } \u001b[36mfrom\u001b[39m \u001b[32m'@playwright/test'\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 3 |\u001b[39m\n \u001b[90m 4 |\u001b[39m test(\u001b[32m'App starts and is ready'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m"
+    },
+    {
+      "message": "Error: No tests found",
+      "stack": "Error: No tests found"
+    }
+  ],
+  "stats": {
+    "startTime": "2025-07-16T21:47:37.043Z",
+    "duration": 29.064000000000078,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
