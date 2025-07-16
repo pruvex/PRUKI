@@ -12,6 +12,8 @@ This project is a sample TypeScript application that demonstrates a production-r
 
 ## Installation and Usage
 
+### Local (Node.js)
+
 1. **Clone the repository:**
 
    ```bash
@@ -35,6 +37,27 @@ This project is a sample TypeScript application that demonstrates a production-r
    ```bash
    npm run build
    ```
+
+### Docker (empfohlen für reproduzierbare Tests)
+
+1. **Voraussetzungen:**
+   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installiert
+
+2. **Test-App im Container bauen und testen:**
+
+   ```bash
+   cd ../docker
+   docker compose up --build
+   ```
+
+   > Die Tests laufen jetzt in einer isolierten, produktionsnahen Umgebung. Änderungen am Code werden direkt übernommen, da das Test-App-Verzeichnis als Volume eingebunden ist.
+
+3. **Container beenden:**
+   ```bash
+   docker compose down
+   ```
+
+---
 
 5. **Run the self-check:**
 
